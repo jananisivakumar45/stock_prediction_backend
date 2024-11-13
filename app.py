@@ -33,7 +33,7 @@ def index():
     return render_template('index.html')
 
 # Endpoint for stock prediction
-@app.route('https://stock-prediction-frontend.onrender.com/predict', methods=['POST'])
+@app.route('/https://stock-prediction-frontend.onrender.com/predict', methods=['POST'])
 def predict():
     # Ensure model and scaler are loaded
     if model is None or scaler is None:
