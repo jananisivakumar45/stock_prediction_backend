@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Price Prediction</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Add this to the <head> section of your HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body
+    class="bg-cover bg-center"
+    style="
+      background-image: url('/static/stock_image.jpg');
+      font-family: 'Poppins', sans-serif;
+    "
+  >
+    <!-- Main Layout (Flexbox) -->
+    <div class="flex min-h-screen p-4 items-center">
+      <!-- Left Side (Form Section) -->
+      <div
+        class="w-full md:w-1/3 bg-white bg-opacity-90 backdrop-blur-lg p-8 rounded-lg shadow-xl flex flex-col justify-between space-y-6"
+      >
+        <h1 class="text-3xl font-bold text-center text-blue-800">
+          Stock Price Prediction
+        </h1>
+
+        <form id="prediction-form" class="space-y-6">
+          <div>
+            <label
+              for="ticker"
+              class="block text-gray-700 text-sm font-semibold"
+              >Stock Ticker:</label
+            >
+            <input
+              type="text"
+              id="ticker"
+              name="ticker"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label for="days" class="block text-gray-700 text-sm font-semibold"
+              >Number of Days:</label
+            >
+            <input
+              type="number"
+              id="days"
+              name="days"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
+          >
+            Predict
+          </button>
+          <button
+            type="button"
+            id="generate-visual"
+            class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
+          >
+            Generate Visual
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Side (Prediction Results) -->
+      <div
+        class="w-full md:w-2/3 ml-4 p-8 bg-white bg-opacity-90 backdrop-blur-lg rounded-lg shadow-xl"
+      >
+      
+      <!-- Results Section -->
+      <div id="results" class="mt-8 space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+              Predicted Prices
+            </h2>
+            <div
+            id="predicted-prices"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
+            <!-- Dynamic prediction cards will go here -->
+        </div>
+        <div id="error-message" class="hidden mt-4 text-red-500"></div>
+        <!-- Loading Spinner (Hidden Initially) -->
+        <div
+          id="loading-spinner"
+          class="flex justify-center items-center mt-6 hidden space-x-3"
+        >
+          <div
+            class="animate-spin rounded-full h-8 w-8 border-t-4 border-blue-500"
+          ></div>
+          <p class="ml-3 text-blue-600 font-semibold">Predicting...</p>
+        </div>
+    </div>
+
+        <!-- Visual Chart (Canvas) -->
+        <div id="visual-container" class="mt-6">
+          <canvas id="stock-price-chart" class="w-full h-64"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
